@@ -2909,7 +2909,7 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 			Name = "Competition",
 			Description = "Draw 3 cards at the cost of 1500 life.",
 			["Type"] = "OnSummon",
-			["Power"] = {{"Draw",3,"Ally"},{"Cost",2000}},
+			["Power"] = {{"Draw",3,"Ally"},{"Cost",1500}},
 			Target = "Opponent",
 		},
 		["Bio"] = "A web contractor and a card developer too!",
@@ -11006,7 +11006,7 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 		["Effect"] = {
 			Name = "Demon Eye",
 			Description = "Whenever you cast an action or terrain spell, LordVasco gains 200 health and power.",
-			["Type"] = "OnCast",
+			["Type"] = "OnAllyCast",
 			["Power"] = {{"Heal",200},{"Strengthen",200}},
 			Target = "Self",
 		},
@@ -11379,7 +11379,7 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 			["Power"] = {{"RandomAdd","Lunar"}},
 			Target = "Ally",	
 		},
-		["Bio"] = "Thanks to guilt by association, this poor chap has to work for Delta Airlines. Eugh!",
+		["Bio"] = "Thanks to guilt by association, this poor chap has to work for Qantas Airlines. Eugh!",
 	},	
 	
 	["Explode1"] = {
@@ -11949,9 +11949,9 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 		["Cost"] = {["Neutral"] = 2,["Yellow"] = 1,},
 		["Effect"] = {
 			Name = "Revival",
-			Description = "Whenever your opponent loses life, generate four targeting blips and destroy Wi_Sh. Targeting blips are used to trigger Target Effects.",
-			["Type"] = "OnEnemyHealthLoss",
-			["Power"] = {{"Add","Targeting Blip"},{"Add","Targeting Blip"},{"Add","Targeting Blip"},{"Add","Targeting Blip"},{"Damage",9999,"Self"}},
+			Description = [[Whenever you or your opponent loses life, gain 3 white icons and return this to your hand. Then draw a card.]],
+			["Type"] = "OnHealthLoss",
+			["Power"] = {{"White",3},{"Return",1,"Self"},{"Draw",1}},
 			Target = "Ally",
 		},
 		["Bio"] = "No dodgeballs. No plushies. No fun allowed.",
@@ -14614,14 +14614,14 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 	},
 	
 	["CIA Man"] = { -- TEST EFFECT
-		["Id"] = 503535848,
+		["Id"] = 503584176,
 		["Name"] = "CIA Man",
 		["Health"] = 500,
 		["Power"] = 200,
 		["Rarity"] = "Uncommon",
 		["AttackEffect"] = "GunShot",
-		["Color"] = "Neutral", 
-		["Cost"] = {["Neutral"] = 4,["Blue"] = 1,},
+		["Color"] = "Blue", 
+		["Cost"] = {["Neutral"] = 5,["Blue"] = 2,},
 		["Effect"] = {
 			Name = "Protection",
 			Description = "Whenever your opponent summons a fighter, summon a Body Guard.", -- Infinite loop, if they have CIA man as well?
@@ -14796,8 +14796,8 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 		["Cost"] = {["Red"] = 4,},
 		["Effect"] = {
 			Name = "Sentry Heart",
-			Description = "When this card attacks, destroy all other allied fighters. This card can attack the turn it is summoned.",
-			["Type"] = "OnAttack",
+			Description = "When this card finishes attacking, destroy all other allied fighters. This card can attack the turn it is summoned.",
+			["Type"] = "OnAttackEnd",
 			["Power"] = {{"Heal",9999,"Self"},{"Damage",9999}},
 			Target = "Ally",
 		},
@@ -14807,8 +14807,8 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 	["Dwarvern Sentry: Delta"] = {
 		["Id"] = 503535982,
 		["Name"] = "Dwarvern Sentry: Delta",
-		["Health"] = 300,
-		["Power"] = 300,
+		["Health"] = 400,
+		["Power"] = 400,
 		["Rarity"] = "Rare",
 		["AttackEffect"] = "SlashDiagonal",
 		["Archetype"] = "Dwarf",
@@ -14816,9 +14816,9 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 		["Cost"] = {["Neutral"] = 2, ["Red"] = 2,},
 		["Effect"] = {
 			Name = "Sentry Heart",
-			Description = "When this card attacks, destroy all other allied fighters.",
-			["Type"] = "OnSummon",
-			["Power"] = {{"Heal",9999,"Self"},{"Damage",9999}},
+			Description = "When this card finishes attacking, gain 1 red icon and deal 300 damage to all other allied fighters.",
+			["Type"] = "OnAttackEnd",
+			["Power"] = {{"Heal",300,"Self"},{"Damage",300},{"Red",1}},
 			Target = "Ally",
 		},
 		["Bio"] = "DELTA STATION. COMMERCIALLY SOLD.",
@@ -14838,9 +14838,9 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 		["Cost"] = {["Neutral"] = 3,["Red"] = 5,},
 		["Effect"] = {
 			Name = "Sentry Heart",
-			Description = "When this card attacks, destroy all other allied fighters and increase the health of this card by 500. This card cannot be counter-attacked. This card can attack the turn it is summoned.",
-			["Type"] = "OnAttack",
-			["Power"] = {{"Heal",9999,"Self"},{"Damage",9999},{"Heal",500,"Self"},{"Charge"}},
+			Description = "When this card finishes attacking, destroy all other allied fighters and increase the health of this card by 150. This card cannot be counter-attacked. This card can attack the turn it is summoned.",
+			["Type"] = "OnAttackEnd",
+			["Power"] = {{"Heal",9999,"Self"},{"Damage",9999},{"Heal",150,"Self"}},
 			Target = "Ally",
 		},
 		["Bio"] = "GAMMA STATION. OVERCLOCKING.",
@@ -14859,9 +14859,9 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 		["Cost"] = {["Red"] = 8,},
 		["Effect"] = {
 			Name = "Sentry Heart",
-			Description = "When this card attacks, destroy all other allied fighters and draw 2 cards. This card can attack the turn it is summoned.",
-			["Type"] = "OnAttack",
-			["Power"] = {{"Heal",9999,"Self"},{"Damage",9999},{"Draw",2},{"Charge"}},
+			Description = "When this card finishes attacking, destroy all other allied fighters and draw 2 cards. This card can attack the turn it is summoned.",
+			["Type"] = "OnAttackEnd",
+			["Power"] = {{"Heal",9999,"Self"},{"Damage",9999},{"Draw",2}},
 			Target = "Ally",
 		},
 		["Bio"] = "MAX STATION. OVERTIME.",

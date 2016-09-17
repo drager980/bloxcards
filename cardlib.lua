@@ -11935,7 +11935,7 @@ local module = { -- CARD_ID, NAME, POWER, HEALTH, RARITY,BIO
 			["Power"] = {{"Blue",2,"Ally"}},
 			Target = "Self",
 		},
-		["Bio"] = "Just don't tell Arceusdon she stole this affect. .3.",
+		["Bio"] = "Just don't tell Arceusdon she stole this effect. .3.",
 	},	
 	
 	["wi_sh"] = {
